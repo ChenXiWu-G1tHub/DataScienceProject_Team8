@@ -2,38 +2,50 @@
 
 colab https://colab.research.google.com/drive/1IyhmGKqCidd6c7e2hvupGArPMATrFFDw?usp=sharing
 
-# Greenhouse Gas Emissions and Rental Prices in UK Regions
+# Dwelling Supply, Population and Private Rent Growth in England
 
-A team data science project for the UCL Data Science Society Project Labs finance track, exploring the relationship between greenhouse gas emissions and private housing rental prices in regions of the UK.
+A team data science project for the UCL Data Science Society Project Labs finance track.
 
 ## Research question
 
-**How do private housing rental prices in regions of the UK affect greenhouse gas emissions?**
+**How are changes in dwelling supply and population associated with changes in private rental prices across English local authorities?**
 
 ## Project overview
 
-This project investigates whether UK regions with higher private housing rental prices tend to have higher or lower greenhouse gas emissions. We will combine regional rental and emissions data, explore geographic and temporal patterns, and assess the relationship using statistical analysis. The analysis will treat rental prices as the explanatory variable and greenhouse gas emissions as the outcome; causal effects cannot be established from this comparison alone.
-
-Greenhouse gas emissions represent contributions to climate change. They do not directly measure local air quality or environmental damage overall.
-
+This project investigates 
 ## Datasets
 
-We plan to combine two datasets covering a common period:
+We plan to combine three datasets at local authority level over a common period.
 
 | Dataset | Required information | Source |
 | --- | --- | --- |
-| Greenhouse gas emissions | Annual emissions by region | Office for National Statistics |
-| Private housing rents | Average monthly private rent by region and date | Office for National Statistics |
+| Dwelling supply | Dwelling stock counts by local authority and year | Government dwelling stock estimates |
+| Population | Annual population estimates by local authority | ONS mid-year population estimates |
+| Private rental prices | Average monthly private rent by local authority and date | Office for National Statistics (ONS) private rental price statistics |
+
+## Regression model
+
+We will fit a multiple linear regression with one observation per local authority over the same analysis period.
+
+$$
+\mathrm{RentGrowth}_i = \beta_0 + \beta_1\mathrm{SupplyGrowth}_i + \beta_2\mathrm{PopulationGrowth}_i + \varepsilon_i
+$$
+
+| Variable | Role | Definition |
+| --- | --- | --- |
+| Rental price growth | Dependent variable (Y) | Percentage change in average private rent |
+| Dwelling supply growth | Independent variable (X₁) | Percentage change in dwelling stock |
+| Population growth | Independent variable (X₂) | Percentage change in resident population |
+
+Here, $i$ indexes local authorities, $\beta_0$ is the intercept, and $\varepsilon_i$ is the error term. $\beta_1$ estimates the difference in rental price growth associated with a one percentage point increase in dwelling supply growth, holding population growth constant. $\beta_2$ estimates the corresponding association with population growth, holding dwelling supply growth constant.
 
 ## Proposed analysis
 
-1. Inspect the coverage, definitions and quality of both datasets.
-2. Standardise regional identifiers, dates and units, and document missing values.
-3. Visualise emissions and rents using maps, time-series charts and scatter plots.
-4. Estimate the direction and strength of their association using correlation and regression.
-5. Check whether results depend on outliers, the emissions measure or the years included.
-
-We will distinguish comparisons between regions from changes within the same region over time. If sufficient annual data is available, an extension will account for persistent regional differences and UK-wide annual changes.
+1. Check the coverage, definitions and geographic boundaries of the source data.
+2. Join the data and calculate percentage changes over the same period for all three measures.
+3. Visualise the measures and their relationships with maps and scatter plots.
+4. Fit the regression and report the coefficients with confidence intervals.
+5. Check how sensitive the estimates are to influential local authorities and the analysis period, where coverage permits.
 
 ## Planned repository structure
 
@@ -46,16 +58,3 @@ outputs/           # Figures and analysis tables
 README.md
 requirements.txt
 ```
-
-This structure describes the intended organisation; analysis files and dependency instructions will be added as the project develops.
-
-## Expected outputs
-
-- A documented process for cleaning and joining the datasets
-- Visualisations of regional emissions and rental patterns
-- Statistical estimates with uncertainty and sensitivity checks
-- A final presentation explaining the findings and their limitations
-
-## Project status
-
-Research question defined. Dataset selection and feasibility checks are the next steps. No findings have been established yet.
