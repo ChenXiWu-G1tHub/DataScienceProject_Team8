@@ -10,16 +10,13 @@ A team data science project for the UCL Data Science Society Project Labs financ
 
 **How are changes in dwelling supply and population associated with changes in private rental prices across English local authorities?**
 
-## Project overview
-
-This project investigates 
 ## Datasets
 
 We plan to combine three datasets at local authority level over a common period.
 
 | Dataset | Required information | Source |
 | --- | --- | --- |
-| Dwelling supply | Dwelling stock counts by local authority and year | Government dwelling stock estimates |
+| Dwelling supply | Dwelling stock counts by local authority and year | Housing Flows Reconciliation (HFR), the Greater London Authority and Regional Assembly |
 | Population | Annual population estimates by local authority | ONS mid-year population estimates |
 | Private rental prices | Average monthly private rent by local authority and date | Office for National Statistics (ONS) private rental price statistics |
 
